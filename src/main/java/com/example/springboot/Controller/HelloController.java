@@ -29,7 +29,6 @@ public class HelloController {
         String fileName = file.getOriginalFilename();
         String filePath = "/opt/resources/images/";
         String datePath = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime()) + "/";
-        //String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
 
         filePath = filePath + datePath; //  path:/home/luhg/local/resources/images/yyyy/MM/dd/
 
