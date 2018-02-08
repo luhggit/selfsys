@@ -17,6 +17,8 @@ public class HelloController {
 
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String say(){
+        String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
+        System.out.println(milisName);
         return "Hello Spring Boot";
     }
 
@@ -25,8 +27,10 @@ public class HelloController {
         Map<String,Object> result = new HashMap<>();
 
         String fileName = file.getOriginalFilename();
-        String filePath = "/home/luhg/local/resources/images/";
+        String filePath = "/opt/resources/images/";
         String datePath = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime()) + "/";
+        //String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
+
         filePath = filePath + datePath; //  path:/home/luhg/local/resources/images/yyyy/MM/dd/
 
         File targetFile = new File(filePath);
