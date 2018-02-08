@@ -47,7 +47,6 @@ public class HelloController {
         result.put("success",1);
         result.put("url", "/images/" + datePath + fileName);
         result.put("message","test upload successful");
-        //result.put("dialog_id","test_dialog");
         return result;
     }
 
