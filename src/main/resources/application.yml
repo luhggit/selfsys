@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.10:3306/selfsys
+    username: pi
+    password: 342521
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

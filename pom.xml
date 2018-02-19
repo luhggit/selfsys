@@ -36,6 +36,17 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- 数据库连接 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
 		<!-- 热部署模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
