@@ -4,10 +4,7 @@ import com.example.springboot.Repository.MarkDownRepository;
 import com.example.springboot.model.MarkDown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -75,15 +72,20 @@ public class MarkDownController {
                 }
                 secondClassChildMap = new HashMap<>();
                 secondClassChildMap.put("label",markDown.getTitle());
-                secondClassChildMap.put("id",index++);
+                secondClassChildMap.put("id",markDown.getId());
                 childMapChildren.add(secondClassChildMap);
             }else{
                 childMap = new HashMap<>();
                 childMap.put("label",markDown.getTitle());
-                childMap.put("id",index++);
+                childMap.put("id",markDown.getId());
                 children.add(childMap);
             }
         }
         return result;
+    }
+
+    @GetMapping("/api/markdown/{id}")
+    public MarkDown getMarkDownById(@PathVariable("id") Integer id){
+        return markDownRepository.findOne(id);
     }
 }
