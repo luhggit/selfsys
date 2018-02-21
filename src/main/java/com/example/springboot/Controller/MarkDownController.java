@@ -88,4 +88,9 @@ public class MarkDownController {
     public MarkDown getMarkDownById(@PathVariable("id") Integer id){
         return markDownRepository.findOne(id);
     }
+
+    @DeleteMapping("/api/markdown/{id}")
+    public void deleteMarkdownById(@PathVariable("id") Integer id){
+        markDownRepository.delete(id);
+    }
 }
