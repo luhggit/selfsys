@@ -8,3 +8,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  http:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+server:
+  session:
+    timeout: 86400
+  port: 8090
+

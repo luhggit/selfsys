@@ -1,0 +1,16 @@
+package com.example.springboot;
+
+import com.example.springboot.interceptor.LoginInterceptor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@Configuration
+public class WebMvcConfigurer extends WebMvcConfigurerAdapter{
+    //增加拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(new LoginInterceptor())    //指定拦截器类
+                .excludePathPatterns("/api/login"); //排除login api
+    }
+}
