@@ -12,8 +12,21 @@ spring:
     multipart:
       max-file-size: 100Mb
       max-request-size: 100Mb
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    timeout: 3600
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
 server:
   session:
     timeout: 86400
   port: 8090
-
+security:
+  oauth2:
+    resource:
+      filter-order: 3

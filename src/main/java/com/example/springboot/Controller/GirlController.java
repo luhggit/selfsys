@@ -14,7 +14,7 @@ public class GirlController {
     @Autowired
     private GirlRepository girlRepository;
 
-    @GetMapping(value = "/api/girl")
+    @GetMapping(value = "/test/girl")
     public List<Girl> getGrilList(){
         return girlRepository.findAll();
     }
