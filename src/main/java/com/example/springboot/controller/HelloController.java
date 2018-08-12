@@ -1,4 +1,4 @@
-package com.example.springboot.Controller;
+package com.example.springboot.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,10 +15,14 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
+    private int i = 0;
+
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String say(){
-        String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
-        System.out.println(milisName);
+        //String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
+        this.i ++;
+        System.out.println("i:" + i);
+        //System.out.println(milisName);
         return "Hello Spring Boot";
     }
 

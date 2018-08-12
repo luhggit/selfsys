@@ -1,4 +1,4 @@
-package com.example.springboot.model;
+package com.example.springboot.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

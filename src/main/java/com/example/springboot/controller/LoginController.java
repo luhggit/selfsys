@@ -1,13 +1,11 @@
-package com.example.springboot.Controller;
+package com.example.springboot.controller;
 
-import com.example.springboot.model.User;
+import com.example.springboot.entity.User;
 import com.example.springboot.util.AuthUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

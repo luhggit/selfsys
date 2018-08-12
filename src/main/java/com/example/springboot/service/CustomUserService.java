@@ -1,7 +1,7 @@
 package com.example.springboot.service;
 
-import com.example.springboot.Repository.SysUserRepository;
-import com.example.springboot.model.SysUser;
+import com.example.springboot.repository.SysUserRepository;
+import com.example.springboot.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

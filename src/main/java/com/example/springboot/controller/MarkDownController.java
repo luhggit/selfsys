@@ -1,7 +1,7 @@
-package com.example.springboot.Controller;
+package com.example.springboot.controller;
 
-import com.example.springboot.Repository.MarkDownRepository;
-import com.example.springboot.model.MarkDown;
+import com.example.springboot.repository.MarkDownRepository;
+import com.example.springboot.entity.MarkDown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,6 @@ public class MarkDownController {
 
     @PostMapping("/api/markdown")
     public void saveMarkDown(@RequestBody MarkDown markDown){
-        System.out.println("markdown content:" + markDown.getHtmlContent());
         markDownRepository.save(markDown);
     }
 

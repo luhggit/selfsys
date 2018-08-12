@@ -1,4 +1,4 @@
-package com.example.springboot.model;
+package com.example.springboot.entity;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package com.example.springboot.Repository;
+package com.example.springboot.repository;
 
-import com.example.springboot.model.Girl;
+import com.example.springboot.entity.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GirlRepository extends JpaRepository<Girl,Integer>{
