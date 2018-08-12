@@ -22,13 +22,13 @@ public class CalendarController {
 
     @GetMapping("/api/calendar/event/{year}/{month}")
     public List<Map<String,Object>> getCalendarEventByMonth(@PathVariable Integer year, @PathVariable Integer month){
-        List<CalendarEvent> calendarEvents = calendarEventRepository.findAllByYearAndMonthOrderByCreateTime(year, month);
+        List<CalendarEvent> calendarEvents = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year, month);
 
         List<CalendarEvent> calendarEventsLastOneMonth;
         if (month == 0){
-            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByCreateTime(year-1,11);
+            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year-1,11);
         }else{
-            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByCreateTime(year,month -1);
+            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year,month -1);
         }
 
         if (calendarEventsLastOneMonth.size()>0){
@@ -37,9 +37,9 @@ public class CalendarController {
 
         List<CalendarEvent> calendarEventsNextMonth;
         if (month == 11){
-            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByCreateTime(year+1,0);
+            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year+1,0);
         }else{
-            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByCreateTime(year,month + 1);
+            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year,month + 1);
         }
 
         if (calendarEventsNextMonth.size()>0){
