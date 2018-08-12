@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <!-- 日志文件路径 -->
-    <property name="LOG_PATH" value="/home/luhg/local/log/springboot" />
+    <property name="LOG_PATH" value="/home/pi/local/log/springboot" />
 
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
