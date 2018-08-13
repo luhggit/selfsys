@@ -11,6 +11,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter{
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginInterceptor())    //指定拦截器类
-                .excludePathPatterns("/api/login"); //排除login api
+                .excludePathPatterns("/api/login")
+                .excludePathPatterns("/api/logout"); //排除login和logout api
     }
 }
