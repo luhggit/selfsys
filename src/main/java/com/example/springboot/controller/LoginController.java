@@ -35,4 +35,17 @@ public class LoginController {
         }
         return result;
     }
+
+    @GetMapping(value = "/api/logout")
+    public Map<String,Object> logout(HttpServletRequest request){
+        Map<String,Object> result = new HashMap<>();
+
+        HttpSession session = request.getSession();
+        if(session.getAttribute("loginSuccess") != null){
+            session.removeAttribute("loginSuccess");
+        }
+
+        result.put("success",true);
+        return result;
+    }
 }
