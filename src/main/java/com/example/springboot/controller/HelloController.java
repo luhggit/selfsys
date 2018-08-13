@@ -21,7 +21,6 @@ public class HelloController {
     public String say(){
         //String milisName = new SimpleDateFormat("yyyyMMddHH24miss").format(Calendar.getInstance().getTime());
         this.i ++;
-        System.out.println("i:" + i);
         return "Hello Spring Boot";
     }
 
