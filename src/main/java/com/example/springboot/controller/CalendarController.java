@@ -2,6 +2,7 @@ package com.example.springboot.controller;
 
 import com.example.springboot.entity.CalendarEvent;
 import com.example.springboot.repository.CalendarEventRepository;
+import com.example.springboot.service.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,47 +14,22 @@ public class CalendarController {
     @Autowired
     private CalendarEventRepository calendarEventRepository;
 
-    @PostMapping("/api/calendar/event/save")
+    @Autowired
+    private CalendarService calendarService;
+
+    @PostMapping("/api/calendar/save")
     public Integer saveCalendarEvent(@RequestBody CalendarEvent calendarEvent){
         calendarEvent.setLastUpdateTime(new Date());
-        calendarEvent = calendarEventRepository.save(calendarEvent);
-        return calendarEvent.getId();
+        return calendarService.save(calendarEvent);
     }
 
-    @GetMapping("/api/calendar/event/{year}/{month}")
+    @GetMapping("/api/calendar/{year}/{month}")
     public List<Map<String,Object>> getCalendarEventByMonth(@PathVariable Integer year, @PathVariable Integer month){
-        List<CalendarEvent> calendarEvents = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year, month);
+        return calendarService.getCalendarEventByMonth(year, month);
+    }
 
-        List<CalendarEvent> calendarEventsLastOneMonth;
-        if (month == 0){
-            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year-1,11);
-        }else{
-            calendarEventsLastOneMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year,month -1);
-        }
-
-        if (calendarEventsLastOneMonth.size()>0){
-            calendarEvents.addAll(calendarEventsLastOneMonth);
-        }
-
-        List<CalendarEvent> calendarEventsNextMonth;
-        if (month == 11){
-            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year+1,0);
-        }else{
-            calendarEventsNextMonth = calendarEventRepository.findAllByYearAndMonthOrderByIdAsc(year,month + 1);
-        }
-
-        if (calendarEventsNextMonth.size()>0){
-            calendarEvents.addAll(calendarEventsNextMonth);
-        }
-
-        List<Map<String,Object>> datas = new ArrayList<>();
-        Map<String,Object> data;
-        for (CalendarEvent calendarEvent:calendarEvents){
-            data = new HashMap<>();
-            data.put("id",calendarEvent.getId());
-            data.put("content",calendarEvent.getEventContent());
-            datas.add(data);
-        }
-        return datas;
+    @PostMapping("/api/calendar/delete/{id}")
+    public void deleteById(@PathVariable Integer id){
+        calendarService.deleteById(id);
     }
 }

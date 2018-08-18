@@ -43,6 +43,12 @@ public class test {
         Random random = new Random();*/
 
         testFinally();
+
+        Exception exception = new Exception();
+
+        WeakHashMap weakHashMap = new WeakHashMap();
+
+        HashSet hashSet = new HashSet();
     }
 
     public static void testFinally(){
