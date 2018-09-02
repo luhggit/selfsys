@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RestController
@@ -20,7 +22,10 @@ public class MarkDownController {
     }
 
     @GetMapping("/api/markdown")
-    public List<Map<String,Object>> getMarkDownTree(){
+    public List<Map<String,Object>> getMarkDownTree(HttpServletRequest request){
+        HttpSession httpSession = request.getSession();
+        String userName = (String)httpSession.getAttribute("username");
+
         List<Sort.Order> orders = new ArrayList<>();
         Sort.Order firstClassOrder = new Sort.Order(Sort.Direction.DESC,"firstClass");
         Sort.Order secondClassOrder = new Sort.Order(Sort.Direction.DESC,"secondClass");
@@ -29,7 +34,15 @@ public class MarkDownController {
         orders.add(secondClassOrder);
         orders.add(createTimeOrder);
         Sort sort = new Sort(orders);
-        List<MarkDown> markDowns = markDownRepository.findAll(sort);
+
+
+        List<MarkDown> markDowns = null;
+        if ("luhg".equals(userName)){
+            markDowns = markDownRepository.findAll(sort);
+        }else{
+            markDowns = markDownRepository.findMarkDownsByStatusIsNull();
+        }
+
 
         List<Map<String,Object>> result = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();

@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,10 +18,20 @@ public class LoginController {
     public Map<String,Object> login(@RequestBody User user, @RequestParam(value = "timestamp") String timestamp,HttpServletRequest request){
         System.out.println(user);
         System.out.println("timestamp:" + timestamp);
-        String userName = "luhg";
-        String passWord = "342521lu";
+        //String userName = "luhg";
 
         Map<String,Object> result = new HashMap<>();
+
+        String userName = user.getUserName();
+        List<String> names = new ArrayList<>(2);
+        names.add("luhg");
+        names.add("luhg3");
+        if (!names.contains(userName)){
+            result.put("sucess",false);
+            return result;
+        }
+
+        String passWord = "342521lu";
 
         boolean check = AuthUtil.checkTimeValid(timestamp,10);
         if (!check){
@@ -30,6 +42,7 @@ public class LoginController {
             if (md5!=null&&md5.equals(user.getPassWord())){
                 HttpSession session = request.getSession(); //创建session set-cookie:JSESSIONID
                 session.setAttribute("loginSuccess",true);
+                session.setAttribute("username",userName);
                 result.put("success",true);
             }
         }
