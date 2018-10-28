@@ -18,6 +18,14 @@ public class MarkDownController {
 
     @PostMapping("/api/markdown")
     public void saveMarkDown(@RequestBody MarkDown markDown){
+        if (markDown.getId() == null) {
+            markDown.setCreateTime(new Date());
+        }
+        if (markDown.getId() != null) {
+            MarkDown markDownOld = markDownRepository.getOne(markDown.getId());
+            markDown.setCreateTime(markDownOld.getCreateTime());
+        }
+        markDown.setLastUpdateTime(new Date());
         markDownRepository.save(markDown);
     }
 
@@ -29,20 +37,21 @@ public class MarkDownController {
         List<Sort.Order> orders = new ArrayList<>();
         Sort.Order firstClassOrder = new Sort.Order(Sort.Direction.DESC,"firstClass");
         Sort.Order secondClassOrder = new Sort.Order(Sort.Direction.DESC,"secondClass");
-        Sort.Order createTimeOrder = new Sort.Order(Sort.Direction.DESC,"createTime");
+        Sort.Order updateTimeOrder = new Sort.Order(Sort.Direction.DESC,"lastUpdateTime");
         orders.add(firstClassOrder);
         orders.add(secondClassOrder);
-        orders.add(createTimeOrder);
+        orders.add(updateTimeOrder);
         Sort sort = new Sort(orders);
 
 
         List<MarkDown> markDowns = null;
-        if ("luhg".equals(userName)){
-            markDowns = markDownRepository.findAll(sort);
-        }else{
-            markDowns = markDownRepository.findMarkDownsByStatusIsNull();
-        }
+//        if ("luhg".equals(userName)){
+//            markDowns = markDownRepository.findAll(sort);
+//        }else{
+//            markDowns = markDownRepository.findMarkDownsByStatusIsNull();
+//        }
 
+        markDowns = markDownRepository.findAll(sort);
 
         List<Map<String,Object>> result = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
