@@ -10,10 +10,6 @@ import java.util.*;
 
 @RestController
 public class CalendarController {
-
-    @Autowired
-    private CalendarEventRepository calendarEventRepository;
-
     @Autowired
     private CalendarService calendarService;
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class MarkDownController {
@@ -115,5 +116,16 @@ public class MarkDownController {
     @DeleteMapping("/api/markdown/{id}")
     public void deleteMarkdownById(@PathVariable("id") Integer id){
         markDownRepository.delete(id);
+    }
+
+    /**
+     * 根据关键字进行搜索
+     * @param keyword
+     * @return
+     */
+    @GetMapping("/api/markdown/serach")
+    public List<Integer> getMarkDownById(@RequestParam("keyword") String keyword){
+        List<MarkDown> markDowns = markDownRepository.findByMdContentLike("%" + keyword + "%");
+        return markDowns.stream().map(e -> e.getId()).collect(Collectors.toList());
     }
 }
