@@ -77,6 +77,7 @@ public class MarkDownController {
                 map.put("label",firstClass);
                 map.put("id",index++);
                 map.put("children",children);
+                map.put("firstClass", true);
                 result.add(map);
             }
 
@@ -89,6 +90,7 @@ public class MarkDownController {
                     childMap.put("id",index++);
                     childMap.put("label",secondClass);
                     childMap.put("children",childMapChildren);
+                    childMap.put("secondClass", true);
                     children.add(childMap);
                 }
                 secondClassChildMap = new HashMap<>();
