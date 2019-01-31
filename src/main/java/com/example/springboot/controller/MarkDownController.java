@@ -2,6 +2,8 @@ package com.example.springboot.controller;
 
 import com.example.springboot.repository.MarkDownRepository;
 import com.example.springboot.entity.MarkDown;
+import com.example.springboot.util.ObjectUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +20,18 @@ public class MarkDownController {
     private MarkDownRepository markDownRepository;
 
     @PostMapping("/api/markdown")
-    public void saveMarkDown(@RequestBody MarkDown markDown){
+    public Integer saveMarkDown(@RequestBody MarkDown markDown){
         if (markDown.getId() == null) {
             markDown.setCreateTime(new Date());
         }
         if (markDown.getId() != null) {
             MarkDown markDownOld = markDownRepository.getOne(markDown.getId());
-            markDown.setCreateTime(markDownOld.getCreateTime());
+            BeanUtils.copyProperties(markDown, markDownOld, ObjectUtils.getNullPropertyNames(markDown));
+            markDown = markDownOld;
         }
         markDown.setLastUpdateTime(new Date());
         markDownRepository.save(markDown);
+        return markDown.getId();
     }
 
     @GetMapping("/api/markdown")

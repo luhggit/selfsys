@@ -12,6 +12,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author luhg
+ */
 @RestController
 public class HelloController {
 
