@@ -33,7 +33,7 @@ public class LoginController {
 
         String passWord = "342521lu";
 
-        boolean check = AuthUtil.checkTimeValid(timestamp,10);
+        boolean check = AuthUtil.checkTimeValid(timestamp,10 * 60 * 60);
         if (!check){
             result.put("sucess",false);
             return result;
