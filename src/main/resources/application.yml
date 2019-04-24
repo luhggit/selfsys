@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.0.10:3306/selfsys
-    username: pi
-    password: 342521
+    url: jdbc:mysql://192.168.1.10:3306/selfsys
+    username: pipipi
+    password: 12345
   jpa:
     hibernate:
       ddl-auto: update #注意!不能设置为create,create会删除所有表数据然后重新创建
